@@ -14,5 +14,7 @@ namespace BootCampApp.Models
         public int Hours { get; set; }
 
         //TODO List Enrollments
+        //Navigation Property
+        public virtual ICollection<Enrollment> Enrollments { get; set; } //1-N
     }
 }
