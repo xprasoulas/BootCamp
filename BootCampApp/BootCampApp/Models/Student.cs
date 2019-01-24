@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;//
 
 namespace BootCampApp.Models
 {   /// <summary>
@@ -12,6 +13,7 @@ namespace BootCampApp.Models
         public string FirstName { get; set; }
         public DateTime EnrollmentDate { get; set; }
         
-        //todo list Enrollments
+        //1 students has MANY enrollments
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }
