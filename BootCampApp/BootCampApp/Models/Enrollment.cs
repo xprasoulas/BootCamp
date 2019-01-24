@@ -8,6 +8,8 @@
     public class Enrollment
     {
         public int EnrollmentID { get; set; }
+        public int CourseID { get; set; } //FK for the table
+        public int StudentID { get; set; } ///FK for the table
         public Grade? Grade { get; set; } //nullable property- attribute for class
 
         //
