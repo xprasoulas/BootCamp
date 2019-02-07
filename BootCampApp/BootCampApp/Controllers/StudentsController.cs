@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BootCampApp.DAL;
+using BootCampApp.Models;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using BootCampApp.DAL;
-using BootCampApp.Models;
 
 namespace BootCampApp.Controllers
 {
@@ -49,12 +46,20 @@ namespace BootCampApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,LastName,FirstName,EnrollmentDate")] Student student)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Students.Add(student);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Students.Add(student);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes");
+            }
+            
 
             return View(student);
         }
